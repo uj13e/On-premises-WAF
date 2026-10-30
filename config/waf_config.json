@@ -1,0 +1,520 @@
+{
+  "listen_host": "0.0.0.0",
+  "listen_port": 8080,
+  "listen_tls": true,
+  "tls_certfile": "waf_cert.pem",
+  "tls_keyfile": "waf_key.pem",
+  "tls_autogen": true,
+  "backend_host": "127.0.0.1",
+  "backend_port": 5000,
+  "backend_scheme": "https",
+  "backend_verify_tls": false,
+  "backends": [
+    {
+      "id": "a-site",
+      "name": "A社サイト",
+      "scheme": "https",
+      "host": "127.0.0.1",
+      "port": 5000,
+      "verify_tls": false,
+      "health_path": "/",
+      "match_hosts": [],
+      "host_header": "target",
+      "listen_port": 8081,
+      "path_prefix": "",
+      "strip_prefix": true,
+      "color": "",
+      "ip_policy": {
+        "blocklist": [],
+        "ip_allowlist": [],
+        "country_blocklist": [],
+        "country_allowlist": []
+      },
+      "owner": "",
+      "stopped": false,
+      "xf_host": true,
+      "xf_proto": true,
+      "xf_for": true,
+      "mode_override": "",
+      "mode_until": 0,
+      "mode_lock": false,
+      "rule_disabled": [],
+      "rule_detect": [],
+      "rule_block": [],
+      "rule_preset": "standard",
+      "preset_allowed": [],
+      "exclusions": [],
+      "org": "a",
+      "retention_days": 0
+    },
+    {
+      "id": "c-site",
+      "name": "C社サイト",
+      "scheme": "https",
+      "host": "127.0.0.1",
+      "port": 5000,
+      "verify_tls": false,
+      "health_path": "/",
+      "match_hosts": [],
+      "host_header": "target",
+      "listen_port": 8082,
+      "path_prefix": "",
+      "strip_prefix": true,
+      "color": "",
+      "ip_policy": {
+        "blocklist": [],
+        "ip_allowlist": [],
+        "country_blocklist": [],
+        "country_allowlist": []
+      },
+      "owner": "",
+      "stopped": false,
+      "xf_host": true,
+      "xf_proto": true,
+      "xf_for": true,
+      "mode_override": "",
+      "mode_until": 0,
+      "mode_lock": false,
+      "rule_disabled": [],
+      "rule_detect": [],
+      "rule_block": [],
+      "rule_preset": "standard",
+      "preset_allowed": [],
+      "exclusions": [],
+      "org": "c",
+      "retention_days": 0
+    },
+    {
+      "id": "b1-site",
+      "name": "B-1社サイト",
+      "scheme": "https",
+      "host": "127.0.0.1",
+      "port": 5000,
+      "verify_tls": false,
+      "health_path": "/",
+      "match_hosts": [],
+      "host_header": "target",
+      "listen_port": 8083,
+      "path_prefix": "",
+      "strip_prefix": true,
+      "color": "",
+      "ip_policy": {
+        "blocklist": [],
+        "ip_allowlist": [],
+        "country_blocklist": [],
+        "country_allowlist": []
+      },
+      "owner": "",
+      "stopped": false,
+      "xf_host": true,
+      "xf_proto": true,
+      "xf_for": true,
+      "mode_override": "",
+      "mode_until": 0,
+      "mode_lock": false,
+      "rule_disabled": [],
+      "rule_detect": [],
+      "rule_block": [],
+      "rule_preset": "standard",
+      "preset_allowed": [],
+      "exclusions": [],
+      "org": "b1",
+      "retention_days": 0
+    },
+    {
+      "id": "b2-site",
+      "name": "B-2社サイト",
+      "scheme": "https",
+      "host": "127.0.0.1",
+      "port": 5000,
+      "verify_tls": false,
+      "health_path": "/",
+      "match_hosts": [],
+      "host_header": "target",
+      "listen_port": 8084,
+      "path_prefix": "",
+      "strip_prefix": true,
+      "color": "",
+      "ip_policy": {
+        "blocklist": [],
+        "ip_allowlist": [],
+        "country_blocklist": [],
+        "country_allowlist": []
+      },
+      "owner": "",
+      "stopped": false,
+      "xf_host": true,
+      "xf_proto": true,
+      "xf_for": true,
+      "mode_override": "",
+      "mode_until": 0,
+      "mode_lock": false,
+      "rule_disabled": [],
+      "rule_detect": [],
+      "rule_block": [],
+      "rule_preset": "standard",
+      "preset_allowed": [],
+      "exclusions": [],
+      "org": "b2",
+      "retention_days": 0
+    }
+  ],
+  "active_backend": "a-site",
+  "host_routing": false,
+  "backend_rewrite_links": true,
+  "mode": "block",
+  "rules": {
+    "xss": true,
+    "sqli": true,
+    "traversal": true,
+    "cmdi": true,
+    "ssrf": true,
+    "xxe": true,
+    "ssti": true,
+    "nosqli": true,
+    "ldap": true,
+    "crlf": true,
+    "redirect": true,
+    "upload": true,
+    "scanner": true,
+    "deser": true,
+    "protocol": true,
+    "logic": true,
+    "response": true
+  },
+  "disabled_rules": [],
+  "detect_only_rules": [
+    "LOGIC-006"
+  ],
+  "inspect": {
+    "query": true,
+    "body": true,
+    "json": true,
+    "headers": true,
+    "cookies": false,
+    "path": true
+  },
+  "security_headers": {
+    "enabled": true,
+    "headers": {
+      "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "no-referrer",
+      "Permissions-Policy": "geolocation=(), microphone=(), camera=()"
+    }
+  },
+  "rate_limit": {
+    "enabled": true,
+    "max_requests": 100,
+    "window_seconds": 10,
+    "action": "drop",
+    "ban_threshold": 5,
+    "ban_seconds": 300,
+    "burst_max": 30,
+    "burst_seconds": 3,
+    "global_max_rps": 0,
+    "ban_escalate": true,
+    "max_conn_per_ip": 20,
+    "max_total_conn": 512,
+    "conn_burst_max": 60,
+    "conn_burst_seconds": 5
+  },
+  "conn_timeout_seconds": 20,
+  "tls_handshake_timeout_seconds": 5,
+  "listen_backlog": 2048,
+  "accept_threads": 4,
+  "process_priority": "above_normal",
+  "thread_switch_interval": 0.001,
+  "blocklist": [],
+  "country_blocklist": [],
+  "log_file": "waf.log",
+  "health_history_file": "health_history.jsonl",
+  "health_heartbeat_file": "health_heartbeat.txt",
+  "ban_history_file": "ban_history.jsonl",
+  "custom_rules_file": "config/custom_rules.json",
+  "rule_history_file": "rule_history.jsonl",
+  "tickets_file": "tickets.json",
+  "notify_email": {
+    "enabled": false,
+    "smtp_host": "",
+    "smtp_port": 587,
+    "smtp_tls": true,
+    "smtp_ssl": false,
+    "username": "",
+    "password": "",
+    "from": "",
+    "to": []
+  },
+  "mode_history_file": "mode_history.jsonl",
+  "access_log": true,
+  "log_global_ip": true,
+  "trust_xforwarded_for": false,
+  "self_ip_ttl": 60,
+  "client_ip_report": {
+    "enabled": true,
+    "cookie_name": "waf_cip",
+    "header_name": "X-Client-IP",
+    "inject_script": true,
+    "ttl_seconds": 45,
+    "cookie_seconds": 3600,
+    "private_only": true,
+    "providers": [
+      "https://api.ipify.org",
+      "https://ipinfo.io/ip",
+      "https://ifconfig.me/ip"
+    ]
+  },
+  "health_check": {
+    "enabled": true,
+    "interval_seconds": 5,
+    "timeout_seconds": 3,
+    "slow_ms": 1000,
+    "fail_threshold": 2,
+    "path": "/health",
+    "backend_path": "/",
+    "waf_probe": true,
+    "allow_when_blocked": true,
+    "blocked_ip_per_sec": 20,
+    "blocked_total_per_sec": 100,
+    "blocked_max_conn": 16
+  },
+  "log_request_detail": true,
+  "log_pass_body": true,
+  "log_response": true,
+  "log_encrypt": {
+    "enabled": true,
+    "org_keys": {
+      "a": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA7rabgoZxtSE4Oi4a2AyP\nZAmE5Pep4/m6Tdh8TKuNQS31aQpkZpeSaUB9hnfOAEwjwBusGez7zwCs2mBvklmu\nEplNcj0TmHazkOBg7hJrIY+PSEzJwrTs+5g1xNy+zJagD3RxdY7lPpru405AA3Cl\no9nJV8MYs739feKcF1YTYTOBM16z5CF9iB0F1uEDhX9Mfcxl01MlqgxLbqWyW5mg\nWEr7mcB4JU25JUVGsUdOk7kPfpwSomox4TCKs/eWG35RPCh58twdrqDevTGT6i2S\nK9GCCKlnCT1dNS7QZjXF5O+kHxAZZNnAnNScXaX9FVfFWZqJM8cULEqR/ZfTWk4E\nfxEcsUDj1PshzQN2WDIxMyBpoUnpwwLflLI+VB+cJqIxyQFJ4Nkx1bG7NoQ9IWH6\n2861q32T2vbfr+Nwyr8v4739vleVgbzxUoXvFXqzElxDULhsWeV3FoEDnYFOt2HO\nV/su5GF/T0a1zzZa19qIgF3O27JlBe+PuZJzPPHTcUexAgMBAAE=\n-----END PUBLIC KEY-----",
+      "vendor": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA3BsRi6L/ft5TOw0ebSUI\nYhtSvPRqt8N4n/A+0a0QYvYdVnZMQdWmm1oh8/jazmLa14ruEDBNi02bLxHhrCB1\nMqbz7O3yK4bXkOmDJ/oSKnoMPw2yvNX5agjFYrJcYEyY8F6cCrAvLUez22v7gyG7\npNp+X/7xS41Aj6+dMtBWM3mOJqB1EbKPGePvhCTw7hGdnw2/e41+dqnxv8iDDLEJ\ncf8ha11Cgjpa3f5poK/2WAYAmaq1IorHzcnXt2sOmBGYE5vGZ9vaSATSWovkL8GS\nZ03m9RR6knYZhBV1wX1uz0BUPz5Rn3rqPvWKDEW6wULNIfIVrm2n/iJVMaNxRFtK\nlC00z9vPfc5KuEVr/Ka4KWV1g3FDOcnWSiLx2Jbz/HM6SBDYxANxP/ebyN7PN/1g\nmGoPX3AQtYdRjOWpS3Fa679a9SNV1qP4HRMsY00srDosDY/jPUQ+Vql8D4KaqWE1\nPuax39CrElXjPyaXEurMapelJad+RiJvM0rG27bKeF4DAgMBAAE=\n-----END PUBLIC KEY-----",
+      "c": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAvKpevc/ONNNe486+xd+5\niGiGSoXeN7VDYL9cUxqPSYQfu1SVjuaVJBdUcD7eYuLp6UU/su8ElUzT2q3m4emv\nOoeWEftJx2c70vMR7R2nBcJOPG3ilw040UnyUCfhKqEonXEs9PdYuKkQd4C9VwwH\njfLu6npf/w23Ns3ZebE/zUwuaMyhJN8HnzWygaIspapVglaiy5cf+lRzh1iki8PR\nllotSRpyN0NeX8j8fVyNqH5JNTBSlDBnsnmtvgKVX2iZD10tJn1QnpHFl/HhM15K\nQBhfWb7Y3HeKYOnG/zRspUIX/lleNAqlcw9+RulaBLCxI6LePLCAuhtC2MxuE2+E\nG3KdFyLDxl9ABpkEN/QC89fBO6akhjhROTAllhjEum19Tp9ewFFaRVj2meFva8HA\nyGqxLFQcoh2GFiH7fjcQRgxGK84zT5s0agb/zlLdJd1OXGdZSlUlMpijw4t4De5N\nZSri/oyaluN4cfZGwJ/8xAtEn2/j/F+vEIAGAYgCckIdAgMBAAE=\n-----END PUBLIC KEY-----",
+      "b": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA0qFgj2gA9mR6CvPcMSpF\nmqvD8D/3m4/HSi02bKJBjmGBQbvL4ENBOSaBfrY6TERGtF7aNFb1fe8gZgZGkb5+\nlhTYJTq7jG4kp4CHoALquaq86uqkNKkdE2a/PmTEGD2d6U0wuDtn/g8heVPTy/vW\nowtf4dPeaZWvK+BN9rkE1+tEhEbMvk19RJwvMYqisF6wd7Hirr0mbUJDR2eKEows\nzqxj1WD7glUFnJltstSyW0WMIaFQ3As78lS3GJEbbWDWT0wrMXOWqS0uLCUPElgY\n5Tis470RiVroiZgJl3a8/K5eYO3A5xOiWg018Kfg29bJnYGPPU+JPZTidWdEoREs\n71R6p6x+AJV5Xh2VSEPAXRu3O//kRoT7h4MAGGwDUxTRKVw0Na/SMhatz0g0mhxb\nfRymfmbU4kOPwr9wPqsqri/QK+W4aAckUl4n5AUDgsEDPxFOtEdGVaVLkBqmiPR1\n4PKzXpEQuohMQEchaNodmzUhQDjJ8Gk3+9PIIV4jLPwJAgMBAAE=\n-----END PUBLIC KEY-----",
+      "b1": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAyFMMVuKA/AScu9JJK/1W\n4Mw/eQpaZkoKChKqzUzv/hw/S+zJZ9vg/5ThPQsInkn1IjDRAD6LSZS15k8ql6Kz\naXw2OMZyf7E9XLhtdgXhh1WHWTmrZB8W7N89dvNC7jTassGTEMVXSFZnyAv8/QyA\nln2N7G4Q/84t9drdATpmY0dywRRPUMWKAkiYCGF8KgEch4LmvnqCvw/Tcs8/Wau5\nCaSAn6jL4B1QRXXJQgTdw9rjArhg64D/sMfmIoEncKILjR1C57CM9K35CR6TGdZm\n4mchwupaecOTfx+sTrwSjw8+EP97yYgapOkLTZb6q7vLOuXeXismEBaB3EFpuwig\n3IUVh/7l1GGnNaxHuZKunfXzXu1hGdRzkw4ZRNYgJdsG5kb6yheQ84p47I/jYJ6D\nfg2P4VI34BslubxN5QdqJah7oAXvAywv7XVBBCOdaEXs7lscg34bDvd9xK6UL4Dq\ndKgnjoY5PASM3WcsDyYYJM3uXqFBfgSUsjs4So7qbaPtAgMBAAE=\n-----END PUBLIC KEY-----",
+      "b2": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAtv0tsaargczuRvaTcFv9\nRWgs8ae4w3jhICXyQSAd1KMvmAe0DdhcjkYvLFTKsRjIOTpMlkvBUnJCtTeAjy++\nV3QBa6iHnPnuU+a31BIcZYTfyEmvnTKEbKlxt2ZYWNEkVBpijERP58fCb+9ewV0U\nzj8/HHsKKGFCBUBK3cVtu5b0h/E5e+ua+kMqFQKe1swKy9bJh7+Y53psSapEhx6T\nOMyI6hqoL0PKu0JKBoFVwMMzy7PGkowR4ImbxourY7lxzmcIpSa31Wx6m1vNtLwA\nKjhDHyDLV+/JMkBfOxbC0NPe8gFE+WYRWkHFHvcF4HxhQTWm1couRTDVC4xuMDUb\ngAjPj35WTB7bu9faQPttYxQzavQGqA/siU/IiyFYsXgsFkkk3tVhkuOh7wQTUgD9\new76+DYRBPTpFjP/Nw1psMzm7zryaipfpdeN5LMI7brDfu55XXoBEUa87OmPvs1J\nFF1jbhSksQFL1G5hV5ESplWRbDOeAw6DG5BDVvHImZj1AgMBAAE=\n-----END PUBLIC KEY-----"
+    },
+    "public_key": ""
+  },
+  "enc_idle_max_min": 60,
+  "enc_hold_max_min": 120,
+  "enc_demo_keys": true,
+  "enc_audit_file": "enc_audit.jsonl",
+  "max_body_inspect_bytes": 1048576,
+  "dashboard": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 8090,
+    "tls": true,
+    "tls_certfile": "",
+    "tls_keyfile": "",
+    "password": "",
+    "require_password_on_lan": true,
+    "geo": true,
+    "egress": true,
+    "alert": {
+      "enabled": true,
+      "sound": true,
+      "threshold": 5,
+      "window": 10,
+      "critical": 100,
+      "hold": 4,
+      "immediate": "critical",
+      "position": "top",
+      "bg": false
+    },
+    "users": [
+      {
+        "username": "admin",
+        "display": "Admin",
+        "role": "admin",
+        "org": "vendor",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$9f703bbe2cdc3053$fadf633d1808df3151ad404a9106e9b392b073157e3cb012916ca1fc44c48695",
+        "alert": {
+          "enabled": true,
+          "bg": true,
+          "position": "both"
+        }
+      },
+      {
+        "username": "soc",
+        "display": "SOC(ベンダー)",
+        "role": "analyst",
+        "org": "vendor",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$b1569c0348db9d48$4443e849e07062037f4c4c25d9be0ddd63fe87d9989e6b6b47bcb6705e7ea548"
+      },
+      {
+        "username": "ko",
+        "display": "キー・オフィサー(ベンダー)",
+        "role": "key_officer",
+        "org": "vendor",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$b3b2837e176ab09a$8149c717c7a573d1e5cdd0782a59c84186eb7ee3da55a6d02a8dc55ca34bec14"
+      },
+      {
+        "username": "a-soc",
+        "display": "A社アナリスト",
+        "role": "analyst",
+        "org": "",
+        "scope": [
+          "a"
+        ],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$203766c0699375d6$cff74dc7038582074ee481fca5406aaa025f28c86601f7041423477dc91a5ac8"
+      },
+      {
+        "username": "a-user",
+        "display": "A社ユーザー",
+        "role": "user",
+        "org": "a",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$22c1504ca4b27bc0$c13c1d31803f1648e0bf54e1840ee2ce3acc14759c08ed65731084714b8c0e04"
+      },
+      {
+        "username": "c-user",
+        "display": "C社ユーザー",
+        "role": "user",
+        "org": "c",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$b71ea6201dc5cc27$7bb83cecd74a0055d7afded4d6851c607466d463f8bbc8af1e5096fcd88dd2fc"
+      },
+      {
+        "username": "b-soc",
+        "display": "B代理店アナリスト",
+        "role": "analyst",
+        "org": "",
+        "scope": [
+          "b"
+        ],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$1b36f085f71e556d$6dd67148c915f7082290947446bb469aee77bf47d41199d841b826c5cc4f6821"
+      },
+      {
+        "username": "b1-user",
+        "display": "B-1社ユーザー",
+        "role": "user",
+        "org": "b1",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$8be07b4a17cfcea2$a1d7fd89edc1b958b950f619d57106e698cfdac9ffe7d5633705e0ca29b42874"
+      },
+      {
+        "username": "b1-user2",
+        "display": "B-1社ユーザー2",
+        "role": "user",
+        "org": "b1",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$d861d1d0771f6503$6d595075d343227e23d65a77212ea72825b2ba2ff1180e75e2865bbaa4116adb"
+      },
+      {
+        "username": "b2-user",
+        "display": "B-2社ユーザー",
+        "role": "user",
+        "org": "b2",
+        "scope": [],
+        "provider": false,
+        "password_hash": "pbkdf2_sha256$120000$4de97f3c9a4e77e8$c1a1be99f7f84f8de0688ca8cf574d5bd174dbe530b320bcfaaccbb689d0122c"
+      }
+    ]
+  },
+  "ip_allowlist": [],
+  "exempt_ips": [],
+  "trusted_proxies": [],
+  "country_allowlist": [],
+  "country_block_unknown": false,
+  "geoip": {
+    "mmdb": "",
+    "online": true
+  },
+  "autoban": {
+    "enabled": true,
+    "threshold": 10,
+    "window_seconds": 60,
+    "ban_seconds": 300
+  },
+  "slow_ban": {
+    "enabled": true,
+    "threshold": 10,
+    "window_seconds": 60
+  },
+  "connlimit_ban": {
+    "enabled": true,
+    "threshold": 5,
+    "window_seconds": 60
+  },
+  "header_timeout_seconds": 10,
+  "body_timeout_seconds": 30,
+  "max_body_bytes": 10485760,
+  "response_inspection": {
+    "action": "sanitize",
+    "max_bytes": 2097152
+  },
+  "webhook": {
+    "url": "",
+    "send_pass": false,
+    "timeout_seconds": 3
+  },
+  "removed_backends": [],
+  "orgs": [
+    {
+      "id": "vendor",
+      "name": "ベンダー(自社)",
+      "type": "vendor",
+      "parent": "",
+      "retention_days": 0,
+      "retention_attack_days": 0,
+      "mask_analyst": true
+    },
+    {
+      "id": "a",
+      "name": "A社",
+      "type": "direct",
+      "parent": "",
+      "retention_days": 0,
+      "retention_attack_days": 0,
+      "mask_analyst": true
+    },
+    {
+      "id": "c",
+      "name": "C社",
+      "type": "direct",
+      "parent": "",
+      "retention_days": 0,
+      "retention_attack_days": 0,
+      "mask_analyst": true
+    },
+    {
+      "id": "b",
+      "name": "B代理店",
+      "type": "intermediary",
+      "parent": "",
+      "retention_days": 0,
+      "retention_attack_days": 0,
+      "mask_analyst": true
+    },
+    {
+      "id": "b1",
+      "name": "B-1社",
+      "type": "enduser",
+      "parent": "b",
+      "retention_days": 0,
+      "retention_attack_days": 0,
+      "mask_analyst": true
+    },
+    {
+      "id": "b2",
+      "name": "B-2社",
+      "type": "enduser",
+      "parent": "b",
+      "retention_days": 0,
+      "retention_attack_days": 0,
+      "mask_analyst": true
+    }
+  ]
+}

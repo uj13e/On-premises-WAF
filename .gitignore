@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# 実行時に作られるデータ(ログ・履歴・申請・キャッシュ)
+data/logs/
+data/geo_cache.json
+data/tickets.json
+data/enc_audit.jsonl
+data/health_heartbeat.txt
+data/health_history.jsonl
+data/rule_history.jsonl
+data/waf.log
+data/*.log
+data/*.jsonl
+
+# エディタ・OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
