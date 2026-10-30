@@ -74,6 +74,8 @@ waf_new/
 
 ### 1. バックエンド(掲示板アプリ)を起動
 
+> **このリポジトリにバックエンドのアプリは含まれていません。** 以下の `stored-xss-poc/app.py` は、作者が動作確認に使った Stored XSS のデモ用掲示板で、付属していません。転送先のアプリ(5000 番など)は各自で用意してください。手軽に試すだけなら `python3 -m http.server 5000` と `python3 waf.py --backend http://127.0.0.1:5000 --no-listen-tls` で動きます(トップの README を参照)。
+
 ```bash
 cd stored-xss-poc
 python3 app.py          # https://127.0.0.1:5000 で起動
